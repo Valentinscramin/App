@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\User\HomeController;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::post('/{contacts}/destroy', [ContactsController::class, 'destroy'])->name
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+URL::forceScheme('https');
