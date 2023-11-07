@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Contacts;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ContactsUpdateRequest extends FormRequest
 {
@@ -21,10 +23,12 @@ class ContactsUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $contact = Contacts::find(request()->segment(1));
+
         return [
-            'name' => 'required|string|min:5',
-            'contact' => 'required|min:9',
-            'email' => 'required|email|unique:contacts,email',
+            'name' => 'required|min:5',
+            'contact' => 'required|unique:contacts,contact,' . $contact->id . '|max:9',
+            'email' => 'required|unique:contacts,email,' . $contact->id . '|email',
         ];
     }
 }

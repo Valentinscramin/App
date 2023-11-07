@@ -6,7 +6,6 @@ use App\Http\Requests\ContactsNewRequest;
 use App\Http\Requests\ContactsUpdateRequest;
 use App\Models\Contacts;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {

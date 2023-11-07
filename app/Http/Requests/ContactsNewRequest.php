@@ -23,7 +23,7 @@ class ContactsNewRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:5',
-            'contact' => 'required|unique:contacts,contact|min:9',
+            'contact' => 'required|unique:contacts,contact|max:9',
             'email' => 'required|email|unique:contacts,email',
         ];
     }

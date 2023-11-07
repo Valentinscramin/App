@@ -13,33 +13,23 @@
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Nome"
                         value="{{ $contacts->name }}">
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
                         placeholder="Email" value="{{ $contacts->email }}">
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="contact">Contato</label>
                     <input type="text" class="form-control" name="contact" id="contact" placeholder="Contato"
                         value="{{ $contacts->contact }}">
-                    @error('contact')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
                 <br>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        {!! implode('', $errors->all('<div>:message</div>')) !!}
+                    </div>
+                @endif
                 <button type="submit" class="btn btn-success">Salvar</button>
             </form>
         </div>
