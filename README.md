@@ -18,10 +18,11 @@ Second one it's about test cases
 And last Part its a branch with last Featuring requirement
 
 ## Denpencie Injection
-I Decided to develop this using Dependices injection to Set up a new Contact, also to validators too;
+I Decided to develop this using Dependices injection to Set up a new Contact, also to validators;
 
 ## Database
-I Create databse migration and Seeders to Contacts and Users, setting up a Default User
+I Create databse migration and Seeders to Contacts and Users, setting up a Default User;
+Each one with your factory defined to it.
 
 ## Default User
 Login: alfasoft@alfasoft.com
