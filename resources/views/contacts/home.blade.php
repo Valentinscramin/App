@@ -13,9 +13,9 @@
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Contact</th>
-                            @auth
-                                <th scope="col">Actions</th>
-                            @endauth
+                            {{-- @auth --}}
+                            <th scope="col">Actions</th>
+                            {{-- @endauth --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -24,17 +24,17 @@
                                 <td scope="row">{{ $eachOne['name'] }}</td>
                                 <td>{{ $eachOne['email'] }}</td>
                                 <td>{{ $eachOne['contact'] }}</td>
-                                @auth
-                                    <td>
-                                        <form action="{{ route('contacts.destroy', $eachOne['id']) }}" method="POST">
-                                            @csrf
-                                            @method('POST')
-                                            <a class="btn btn-sm btn-warning"
-                                                href="{{ route('contacts.edit', $eachOne['id']) }}">Edit</a>
-                                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-                                        </form>
-                                    </td>
-                                @endauth
+                                {{-- @auth --}}
+                                <td>
+                                    <form action="{{ route('contacts.destroy', $eachOne['id']) }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <a class="btn btn-sm btn-warning"
+                                            href="{{ route('contacts.edit', $eachOne['id']) }}">Edit</a>
+                                        <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                                {{-- @endauth --}}
                             </tr>
                         @endforeach
                     </tbody>
