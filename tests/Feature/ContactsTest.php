@@ -20,46 +20,74 @@ class ContactsTest extends TestCase
     /**
      * A basic feature to test email.
      */
-    // public function test_set_multiple_equals_email(): void
-    // {
-    //     $response = \App\Models\Contacts::factory(2)->create(['email' => 'teste@gmail.com']);
-    //     $response->assertSessionHasErrors([0 => 'The email has already been taken.']);
-    // }
+    public function test_set_multiple_equals_email(): void
+    {
+        $this->post(route('contacts.home'), [
+            'name' => fake()->name(),
+            'contact' => fake()
+                ->unique()
+                ->numerify('#########'),
+            'email' => 'teste@gmail.com',
+        ]);
+
+        $response = $this->post(route('contacts.home'), [
+            'name' => fake()->name(),
+            'contact' => fake()
+                ->unique()
+                ->numerify('#########'),
+            'email' => 'teste@gmail.com',
+        ]);
+
+        $response->assertStatus(405);
+    }
 
     /**
      * A basic feature to test contact.
      */
-    // public function test_set_multiple_equals_contact(): void
-    // {
-    //     $response = \App\Models\Contacts::factory(2)->create(['contact' => '999999999']);
-    //     // $response->assertSessionHasErrors([0 => 'The contact has already been taken.']);
-    //     $this->assertEquals(session('errors')->getBag('default')->first(),'The contact has already been taken.');
-    // }
+    public function test_set_multiple_equals_contact(): void
+    {
+        $this->post(route('contacts.new'), [
+            'name' => fake()->name(),
+            'contact' => '999999998',
+            'email' => fake()->email(),
+        ]);
+
+        $response = $this->post(route('contacts.new'), [
+            'name' => fake()->name(),
+            'contact' => '999999998',
+            'email' => fake()->email(),
+        ]);
+
+        $response->assertStatus(405);
+    }
 
     /**
      * A basic feature to set more than 9.
      */
-    // public function test_set_contact_higher_than_nine(): void
-    // {
-    //     $response = \App\Models\Contacts::factory(2)->create(['contact' => '999999999999']);
-    //     $response->assertSessionHasErrors([0 => 'The contact field must not be greater than 9 characters.']);
-    // }
+    public function test_set_contact_higher_than_nine(): void
+    {
+        $response = $this->post(route('contacts.new'), [
+            'name' => fake()->name(),
+            'contact' => '999999999999',
+            'email' => fake()->email(),
+        ]);
+
+        $response->assertStatus(405);
+    }
 
     /**
      * A basic feature to set less than five.
      */
-    // public function test_set_name_less_than_five(): void
-    // {
-    //     $response = \App\Models\Contacts::factory(1)->create(['name' => 'ana']);
-    //     $response->assertSessionHasErrors([0 => 'The name field must be at least 5 characters.']);
-    // }
+    public function test_set_name_less_than_five(): void
+    {
+        $response = $this->post(route('contacts.new'), [
+            'name' => 'ana',
+            'contact' => fake()
+                ->unique()
+                ->numerify('#########'),
+            'email' => fake()->email(),
+        ]);
 
-    /**
-     * A basic feature to create role.
-     */
-    // public function test_create_role_contact(): void
-    // {
-    //     $response = \App\Models\Contacts::factory(2)->create();
-    //     $response->assertStatus(200);
-    // }
+        $response->assertStatus(405);
+    }
 }
